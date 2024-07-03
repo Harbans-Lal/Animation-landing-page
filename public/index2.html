@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Animation</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+US+Trad:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        overflow: hidden;
+      }
+
+      .container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+      }
+
+      .hands {
+        position: absolute;
+        width: 135px;
+        height: auto;
+        top: 19%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        animation: showHands 2s forwards 2s;
+      }
+      .outerCircle{
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        border: 1px solid white ;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: moveCircle 2s forwards;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+      }
+      .circle {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: rgb(255, 255, 255);
+  
+        left: 50%;
+        transform: translate(-50%, 2%);
+        animation: moveCircle 2s forwards;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+      }
+
+      .letters {
+        display: flex;
+        gap: 2px;
+        color: rgb(19, 18, 18);
+        font-size: 2em;
+      }
+
+      .letters span {
+        opacity: 0;
+        position: relative;
+      }
+
+      .letters .h {
+        animation: showLetter 1s forwards 2s;
+        font-family: "Playwrite US Trad", cursive;
+        font-weight: bold;
+        font-style: normal;
+      }
+
+      .letters .a {
+        animation: showLetter 1s forwards 3s;
+        font-family: "Playwrite US Trad", cursive;
+        font-size: 20px;
+      }
+
+      .letters .i {
+        animation: showLetter 1s forwards 4s;
+        font-family: "Playwrite US Trad", cursive;
+        font-size: 16px;
+        top: 29px;
+        left: -23px;
+      }
+      .letters .img {
+        animation: showLetter 1s forwards 4s;
+        font-family: "Playwrite US Trad", cursive;
+        font-size: 16px;
+        top: 29px;
+        left: -23px;
+        background-image: url('public/title-removebg-preview.png');
+        background-size: 200px;
+      }
+      .clickable-words {
+        position: absolute;
+        width: 100%;
+        justify-content: center;
+        bottom: 150px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 60px;
+      }
+
+      .clickable-words .word-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        opacity: 0;
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        transform: translate(-50%, -50%);
+      }
+
+      .clickable-words .word-container img {
+        animation: showImage 1s forwards;
+        transition: transform 0.3s;
+      }
+
+      .clickable-words .word-container img:hover {
+        transform: rotateZ(360deg);
+      }
+
+      .clickable-words span {
+        height: 20px;
+        cursor: pointer;
+        padding: 5px 10px;
+        text-align: center;
+        font-size: 22px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border-radius: 5px;
+        opacity: 0;
+        animation: showWords 2s forwards;
+        position: relative;
+        transition: transform 0.3s, background-color 0.3s;
+      }
+
+      .clickable-words span:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+        transform: scale(1.1);
+      }
+
+      .word1 {
+        animation: moveWord 2s forwards 4s;
+      }
+
+      .word2 {
+        animation: moveWord 2s forwards 4.5s;
+      }
+
+      .word3 {
+        animation: moveWord 2s forwards 5s;
+      }
+
+      .word4 {
+        animation: moveWord 2s forwards 5.5s;
+      }
+
+      .word5 {
+        animation: moveWord 2s forwards 6s;
+      }
+
+      @keyframes moveCircle {
+        from {
+          top: 60%;
+          opacity: 0;
+        }
+        to {
+          top: 15%;
+          opacity: 1;
+        }
+      }
+
+      @keyframes showLetter {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes showHands {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes showWords {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes showImage {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .word1 { --target-top: 30%; --target-left: 10%; }
+      .word2 { --target-top: 30%; --target-left: 45%; }
+      .word3 { --target-top: 30%; --target-left: 85%; }
+      .word4 { --target-top: 90%; --target-left: 30%; }
+      .word5 { --target-top: 90%; --target-left: 70%; }
+
+      @keyframes moveWord {
+        from {
+          top: 10%;
+          left: 50%;
+          opacity: 0;
+        }
+        to {
+          top: var(--target-top);
+          left: var(--target-left);
+          opacity: 1;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <video autoplay muted loop class="image">
+        <source src="../src/assets/WhatsApp Video 2024-06-24 at 10.24.21.mp4" type="video/mp4" />
+      </video>
+
+
+      <div class="outerCircle">
+            <div class="circle">
+                <div class="letters">
+                <span class="h">H</span>
+                <span class="a">A</span>
+                <span class="i">I</span>
+
+                </div>
+            </div>
+            <img style="position: absolute;
+            top: 55px;
+            left: 1%;
+            width: 145px;
+            height: 100px;" 
+            width="200px" height="200px" src="title-removebg-preview.png" />
+
+        </div>
+
+     
+      <div class="clickable-words">
+        <div class="row">
+          <div class="word-container word1">
+            <span class="word1">Word1</span>
+            <img style="transform: rotateZ(45deg); position: absolute;" width="100px" height="100px" src="./singleHandWithoutBg.png" />
+          </div>
+          <div class="word-container word2">
+            <span class="word2">Word2</span>
+            <img style="transform: rotateZ(45deg); position: absolute;" width="100px" height="100px" src="./singleHandWithoutBg.png" />
+          </div>
+          <div class="word-container word3">
+            <span class="word3">Word3</span>
+            <img style="transform: rotateZ(45deg); position: absolute;" width="100px" height="100px" src="./singleHandWithoutBg.png" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="word-container word4">
+            <span class="word4">Word4</span>
+            <img style="transform: rotateZ(45deg); position: absolute;" width="100px" height="100px" src="./singleHandWithoutBg.png" />
+          </div>
+          <div class="word-container word5">
+            <span class="word5">Word5</span>
+            <img style="transform: rotateZ(45deg); position: absolute;" width="100px" height="100px" src="./singleHandWithoutBg.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.querySelectorAll(".clickable-words span").forEach((word) => {
+        word.addEventListener("click", () => {
+          alert(`You clicked on ${word.textContent}`);
+          word.style.transform = "scale(1.2) rotateZ(360deg)";
+          setTimeout(() => {
+            word.style.transform = "scale(1) rotateZ(0deg)";
+          }, 300);
+        })
+      };
+    </script>    
+</body>
+</html>
+
+
+
+
